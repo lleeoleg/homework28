@@ -61,14 +61,16 @@ def main():
         Path.mkdir(images_dir) 
     file_name_requests = images_dir / "requests_json.json" 
     file_name_aiohttp = images_dir / "aiohttp_json.json"
+    
     start_time = time.time()
     response = get_response(url).json() 
     print(f"Requests time: {time.time() - start_time}") 
     write_json(file_name_requests, response)
+    
     start_time = time.time()
     response = asyncio.run(async_fetch_url(url))
     print(f"Aiohttp time: {time.time() - start_time}")
     write_json(file_name_aiohttp, response)
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     main()
